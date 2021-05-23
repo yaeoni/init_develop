@@ -11,18 +11,24 @@ const upload = require("../middleware/image");
  *  @desc image upload
  *  @access Public
  */
+
+ /** 
+  * 이미지를 넣고 해당 URL을 바로 리턴 받 기 ?!
+  * DB에 UserID 랑 이미지를 따로 저장하기 ( 배열 마냥 ? ?!? )
+  * 결국 Id 값은 넣긴 넣어ㅑ함
+  */
 router.post(
     "/",
     upload.single('image'),
     async(req: Request, res: Response)=>{
         try{
-            console.log("successfully uploaded"); 
+            console.log("successfully uploaded", res);
+            // URL -> res.location 
             res.json({ "msg" : "success!"})
         }catch(err){
             console.error(err.message);
             return res.status(500).send("Server error");
         }
-        
     }
 )
 

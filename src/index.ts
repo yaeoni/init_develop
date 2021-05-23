@@ -1,13 +1,14 @@
 import express from "express";
-
+import logger from "morgan";
 const app = express();
 import connectDB from "./Loaders/db";
 
 //connect DB
 connectDB();
 
-app.use(express.json());
 
+app.use(express.json());
+app.use(logger("dev"));
 // define route
 app.use("/api/users", require("./api/users"));
 app.use("/api/auth", require("./api/auth"));
